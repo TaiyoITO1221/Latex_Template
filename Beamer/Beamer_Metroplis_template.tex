@@ -1,0 +1,198 @@
+\documentclass[aspectratio=169, dvipdfmx, 12pt,uplatex]{beamer} % aspectratio=43, 149, 169
+%8pt, 9pt, 10pt, 11pt, 12pt, 14pt, 17pt, 20pt
+\usepackage{here, amsmath, latexsym, amssymb, bm, ascmac, mathtools, multicol, tcolorbox, subfig}
+\usepackage{verbatim}
+\usepackage{listings,jvlisting}
+%デザインの選択(省略可)
+\usetheme[progressbar=frametitle]{metropolis}
+\usepackage{appendixnumberbeamer}
+
+\usepackage{booktabs}
+\usepackage[scale=2]{ccicons}
+
+\usepackage{pgfplots}
+\usepgfplotslibrary{dateplot}
+
+\usepackage{xspace}
+\newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
+
+%バーをつける
+\begin{comment}
+\makeatletter
+\setbeamertemplate{headline}{%
+  \begin{beamercolorbox}[colsep=1.5pt]{upper separation line head}
+  \end{beamercolorbox}
+  \begin{beamercolorbox}{section in head/foot}
+    \vskip2pt\insertnavigation{\paperwidth}\vskip2pt
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[colsep=1.5pt]{lower separation line head}
+  \end{beamercolorbox}
+}
+\makeatother
+
+\setbeamercolor{section in head/foot}{fg=white, bg=Tetsukon}%色かえ
+\end{comment}
+%ここまでバーの設定
+
+%\titlegraphic{\hfill\includegraphics[height=1.5cm]{logo.pdf}}
+%カラーテーマの選択(省略可)
+%\usecolortheme[RGB={0, 20, 150}]{structure}
+%フォントテーマの選択(省略可)
+%\usefonttheme{professionalfonts}
+%フレーム内のテーマの選択(省略可)
+%\useinnertheme{circles}
+%フレーム外側のテーマの選択(省略可)
+%\useoutertheme{infolines}
+%しおりの文字化け解消
+\usepackage{atbegshi}
+\ifnum 42146=\euc"A4A2
+\AtBeginShipoutFirst{\special{pdf:tounicode EUC-UCS2}}
+\else
+\AtBeginShipoutFirst{\special{pdf:tounicode 90ms-RKSJ-UCS2}}
+\fi
+%ナビゲーションバー非表示
+%\setbeamertemplate{navigation symbols}{}
+%既定をゴシック体に
+\renewcommand{\kanjifamilydefault}{\gtdefault}
+
+%色定義
+\definecolor{Purple}{HTML}{911146}
+\definecolor{Orange}{HTML}{CF4A30}
+
+\definecolor{Konpeki}{HTML}{007bbb}
+\definecolor{Akadaidai}{HTML}{ea5506}
+\definecolor{Nanohana}{HTML}{ffec47}
+\definecolor{Hisui}{HTML}{38b48b}
+\definecolor{Tetsukon}{HTML}{17184b}
+\definecolor{Wasurena}{HTML}{89c3eb}
+\definecolor{Kinari}{HTML}{fbfaf5}
+\definecolor{Gunjou}{HTML}{4c6cb3}
+\definecolor{Ruri}{HTML}{1e50a2}
+\definecolor{Haizakura}{HTML}{e8d3d1}
+\definecolor{Konai}{HTML}{0f2350}% RBG={15,35,80}
+\definecolor{Shobu}{HTML}{674196}
+\definecolor{Shikon}{HTML}{460e44}
+\definecolor{Tansei}{HTML}{A3BCE2}%RGB：R163 G188 B226
+\definecolor{Ai}{HTML}{165e83}
+\definecolor{Kon}{HTML}{223a70}
+\definecolor{Konjo}{HTML}{192f60}%RGB：R25 G47 B96
+\definecolor{Fukamidori}{HTML}{00552e}
+
+
+%"structure"テーマの色
+\usecolortheme[RGB={25, 47, 96}]{structure}%Tetsukon
+%structureの色でタイトル、目次、参考文献の色が変わる
+% Theme colors are derived from these two elements
+\setbeamercolor{alerted text}{fg=Akadaidai}
+
+% ... however you can of course override styles of all elements
+%タイトル
+\setbeamerfont{title}{size=\huge, series=\bf}% \LARGE,\HUGEでも
+\setbeamercolor{title}{fg=structure, bg=}
+% スライドのヘッダ
+\setbeamerfont{frametitle}{size=\Large, series=\bf}
+\setbeamercolor{frametitle}{fg=white, bg=Ruri}%Konpeki, Ruri, Gunjou, Shobu,Shikon,Tansei
+%これでsection名の色と背景が変わる
+% 標準テキスト，背景色
+\setbeamercolor{normal text}{fg=Konjo, bg=Kinari}
+
+% \setbeamercolor{normal text}{fg=black, bg=gray!10!white} % 印刷用
+
+
+%ブロック環境の色設定
+\setbeamercolor{block title}{fg=white, bg=Tetsukon}
+\setbeamercolor{block title alerted}{fg=white, bg=Akadaidai}
+\setbeamercolor{block title example}{fg= white, bg=Hisui}
+\setbeamercolor{block body}{fg=Tetsukon, bg=Tetsukon!10!white}
+\setbeamercolor{block body alerted}{fg=Tetsukon, bg=Akadaidai!10!white}
+\setbeamercolor{block body example}{fg=Tetsukon, bg=Hisui!10!white}
+
+%スライド番号のみ表示
+%\setbeamertemplate{footline}[frame number]
+
+%itemize
+\setbeamertemplate{itemize item}{\small\raise0.5pt\hbox{$\bullet$}}
+\setbeamertemplate{itemize subitem}{\tiny\raise1.5pt\hbox{$\blacktriangleright$}}
+\setbeamertemplate{itemize subsubitem}{\tiny\raise1.5pt\hbox{$\bigstar$}}
+% colorコマンド
+\newcommand{\Aka}[1]{\textcolor{Akadaidai}{#1}}
+\newcommand{\Wasurena}[1]{\textcolor{Wasurena}{#1}}
+\newcommand{\Hisui}[1]{\textcolor{Hisui}{#1}}
+\newcommand{\Nanohana}[1]{\textcolor{Nanohana}{#1}}
+\newcommand{\Konpeki}[1]{\textcolor{Konpeki}{#1}}
+\begin{comment}
+#####配色に関する覚書#######
+強調は青かオレンジを使う。赤はNG。緑も黒っぽく見える
+色区別をつけるためには暖色と寒色を用いるか、明度に差をつける、色グラデーションより明度グラデーションを採用する
+\end{comment}
+
+\title[]{タイトル}
+\subtitle{}
+\author[伊藤太陽]{伊藤太陽}
+\institute[東京大学経済学部4年]{東京大学経済学部4年}
+\date{\today}
+
+\begin{document}
+\maketitle
+\begin{frame}{目次}
+    \tableofcontents
+\end{frame}
+\section{色について}
+\begin{frame}[allowframebreaks]{色設定}
+文字の色の変え方については二通りある
+一つ目は
+\color{Wasurena}
+このようにカラーコマンドをつけて色を戻すまでずっと色指定をするやり方
+
+もう一つは\Aka{このよう}に\Nanohana{一箇所}だけ変える方法
+
+
+\begin{block}{block}
+枠囲いの環境
+\end{block}
+\begin{alertblock}{alertblock}
+枠囲いの環境その 2
+\end{alertblock}
+\begin{exampleblock}{exampleblock}
+枠囲いの環境その 3
+\end{exampleblock}
+\end{frame}
+
+
+\begin{frame}{図}
+  \begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth]{absolutePovertyRate.png}
+  \caption{\label{fig:aPR}都道府県別絶対的貧困率
+  \\ \cite{戸室健作2013近年における都道府県別貧困率の推移について}より作成}
+  ここでの貧困率は生活保護基準を利用して推定した都道府県ごとの最低生活費を収入が下回る世帯の割合
+  \end{figure}
+  \end{frame}
+  \begin{frame}{分割}
+     スライドを分割してみようここの部分は分割する前であるので改行されずに右側まで到達することができる
+      \begin{columns}[t]
+      \begin{column}{0.5\textwidth}
+      \\
+        左側\\
+         \Aka{右の図は\cite{戸室健作2013近年における都道府県別貧困率の推移について}より作成}\\
+         %色指定コマンド
+         \alert{アラート色}
+      \end{column}
+      \begin{column}{0.5\textwidth}
+        \begin{figure}
+          \begin{center}
+            \includegraphics[height=3.0cm]{absolutePovertyRate.png}
+            \caption{都道府県別絶対的貧困}
+          \end{center}
+        \end{figure}
+      \end{column}
+    \end{columns}
+  \end{frame}
+
+ \section*{参考文献}
+  \begin{frame}[allowframebreaks]{参考文献}{}
+   \nocite{*}
+   \bibliographystyle{apalike}
+   \bibliography{sample.bib}
+  \end{frame}
+\end{document}
